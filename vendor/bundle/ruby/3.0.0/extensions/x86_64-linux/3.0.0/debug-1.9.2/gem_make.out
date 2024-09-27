@@ -1,0 +1,16 @@
+current directory: /home/aswathikv/workspace/legal-saas/vendor/bundle/ruby/3.0.0/gems/debug-1.9.2/ext/debug
+/usr/bin/ruby3.0 -I /usr/lib/ruby/vendor_ruby -r ./siteconf20240927-10924-ly1pkq.rb extconf.rb
+creating Makefile
+
+current directory: /home/aswathikv/workspace/legal-saas/vendor/bundle/ruby/3.0.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= clean
+
+current directory: /home/aswathikv/workspace/legal-saas/vendor/bundle/ruby/3.0.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\=
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/aswathikv/workspace/legal-saas/vendor/bundle/ruby/3.0.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20240927-10924-4asyva/debug
