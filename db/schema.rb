@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_29_173344) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_29_175713) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_29_173344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["legal_case_id"], name: "index_documents_on_legal_case_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "legal_case_id", null: false
+    t.decimal "total_amount"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["legal_case_id"], name: "index_invoices_on_legal_case_id"
   end
 
   create_table "law_firms", force: :cascade do |t|
@@ -71,7 +80,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_29_173344) do
     t.index ["law_firm_id"], name: "index_legal_cases_on_law_firm_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "invoice_id", null: false
+    t.decimal "amount"
+    t.date "payment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
+  end
+
   add_foreign_key "documents", "legal_cases"
+  add_foreign_key "invoices", "legal_cases"
   add_foreign_key "lawyers", "law_firms"
   add_foreign_key "legal_cases", "law_firms"
+  add_foreign_key "payments", "invoices"
 end

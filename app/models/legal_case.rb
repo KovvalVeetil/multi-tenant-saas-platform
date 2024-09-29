@@ -3,6 +3,7 @@ class LegalCase < ApplicationRecord
   has_and_belongs_to_many :clients
   has_and_belongs_to_many :lawyers
   has_many :documents, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 
   validates :case_number, presence: true
   validates :status, presence: true
