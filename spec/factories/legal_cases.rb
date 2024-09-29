@@ -6,6 +6,7 @@ FactoryBot.define do
 
     after(:create) do |legal_case|
       legal_case.clients << FactoryBot.create(:client)
+      legal_case.lawyers << FactoryBot.create(:lawyer)
     end
   end
 end

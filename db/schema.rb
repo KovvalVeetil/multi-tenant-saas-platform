@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_29_161458) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_29_171842) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_29_161458) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lawyers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.bigint "law_firm_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["law_firm_id"], name: "index_lawyers_on_law_firm_id"
+  end
+
+  create_table "lawyers_legal_cases", id: false, force: :cascade do |t|
+    t.bigint "lawyer_id", null: false
+    t.bigint "legal_case_id", null: false
+    t.index ["lawyer_id"], name: "index_lawyers_legal_cases_on_lawyer_id"
+    t.index ["legal_case_id"], name: "index_lawyers_legal_cases_on_legal_case_id"
+  end
+
   create_table "legal_cases", force: :cascade do |t|
     t.string "case_number"
     t.string "status"
@@ -45,5 +62,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_29_161458) do
     t.index ["law_firm_id"], name: "index_legal_cases_on_law_firm_id"
   end
 
+  add_foreign_key "lawyers", "law_firms"
   add_foreign_key "legal_cases", "law_firms"
 end
